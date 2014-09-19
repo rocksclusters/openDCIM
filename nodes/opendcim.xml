@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart>
+
+
+	<description>
+	Your opendcim roll description here
+	</description>
+
+	<copyright>
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved. Rocks(r) v5.5/v6.0 www.rocksclusters.org
+	
+	</copyright>
+
+	<changelog>
+	$Log$
+	</changelog>
+
+	<package>openDCIM</package>
+	<package>opendcim-support</package>
+<post>
+/usr/sbin/useradd -c "DCIM DB user" dcim
+/bin/chown -R dcim.dcim /opt/opendcim
+<!-- enable upload of pictures into drawings/pictures -->
+/bin/chgrp apache /opt/opendcim/openDCIM-3.3/pictures
+/bin/chgrp apache /opt/opendcim/openDCIM-3.3/drawings
+
+if [ ! -e /var/www/html/opendcim ]; then
+	/bin/ln -s /opt/opendcim/openDCIM-3.3 /var/www/html/opendcim
+fi
+
+</post>
+
+
+
+
+</kickstart>
